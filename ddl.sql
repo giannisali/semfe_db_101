@@ -184,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `ingredient` (
                                             `food_group_id` INT          NOT NULL,
                                             PRIMARY KEY (`id`),
                                             INDEX `ingredient_idx_1` (`food_group_id` ASC),
-                                            INDEX `ingredient_idx_2` (`name` ASC),
+                                            CONSTRAINT `ingredient_uc_1` UNIQUE (`name` ASC),
                                             CONSTRAINT `fk_ingredient_food_group` FOREIGN KEY (`food_group_id`) REFERENCES `food_group` (`id`)
 );
 
