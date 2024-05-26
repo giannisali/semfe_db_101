@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `food_group` (
                                             `id` INT NOT NULL AUTO_INCREMENT,
                                             `name` VARCHAR(100) NOT NULL,
                                             `description` VARCHAR(100) NULL,
-                                            `iamge_id` INT,
+                                            `image_id` INT,
                                             PRIMARY KEY (`id`),
                                             CONSTRAINT `food_group_uc_1` UNIQUE (`name` ASC),
                                             CONSTRAINT `fk_food_group_image` FOREIGN KEY (`image_id`) REFERENCES `image` (`id`)
