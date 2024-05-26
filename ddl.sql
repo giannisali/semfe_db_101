@@ -40,10 +40,10 @@ CREATE TABLE IF NOT EXISTS `user` (
                                       `user_name` VARCHAR(100) NOT NULL,
                                       `password` VARCHAR(100) NOT NULL,
                                       `is_admin` BOOLEAN,
-                                      `cook_id` INT
-                                      PRIMARY KEY (`id`),
-                                      CONSTRAINT `user_name_uc` (`user_name` ASC),
-                                      CONSTRAINT `fk_cook_user` FOREIGN KEY (`cook_id`) REFERENCES `cook` (`id`)
+                                      `cook_id` INT,
+                                          PRIMARY KEY (`id`),
+    CONSTRAINT `user_name_uc` UNIQUE (`user_name` ASC),
+    CONSTRAINT `fk_cook_user` FOREIGN KEY (`cook_id`) REFERENCES `cook` (`id`)
 );
 
 -- -----------------------------------------------------
