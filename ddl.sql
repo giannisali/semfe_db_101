@@ -47,6 +47,15 @@ CREATE TABLE IF NOT EXISTS `user` (
 );
 
 -- -----------------------------------------------------
+-- Table image
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `image` (
+                                      `id` INT NOT NULL AUTO_INCREMENT,
+                                      `image` BLOB NOT NULL,
+                                          PRIMARY KEY (`id`)
+);
+
+-- -----------------------------------------------------
 -- Table `cuisine`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cuisine` (
@@ -95,11 +104,13 @@ CREATE TABLE IF NOT EXISTS `recipe` (
                                         `description` TEXT NULL,
                                         `portions` INT NOT NULL,
                                         `cuisine_id` INT NOT NULL,
+                                        `image_id` INT,
                                         PRIMARY KEY (`id`),
                                         INDEX `recipe_idx_1` (`name` ASC),
                                         INDEX `recipe_idx_2` (`cuisine_id` ASC),
                                         INDEX `recipe_idx_3` (`difficulty` ASC),
-                                        CONSTRAINT `fk_recipe_cuisine1` FOREIGN KEY (`cuisine_id`) REFERENCES `cuisine` (`id`)
+                                        CONSTRAINT `fk_recipe_cuisine1` FOREIGN KEY (`cuisine_id`) REFERENCES `cuisine` (`id`),
+                                        CONSTRAINT `fk_recipe_image` FOREIGN KEY (`image_id`) REFERENCES `image` (`id`)
 );
 
 
@@ -144,8 +155,10 @@ CREATE TABLE IF NOT EXISTS `equipment` (
                                            `id` INT NOT NULL AUTO_INCREMENT,
                                            `name` VARCHAR(100) NOT NULL,
                                            `manual` TEXT NULL,
+                                           `image_id` INT,
                                            PRIMARY KEY (`id`),
-                                           CONSTRAINT `equipment_uc_1` UNIQUE (`name` ASC)
+                                           CONSTRAINT `equipment_uc_1` UNIQUE (`name` ASC),
+                                        CONSTRAINT `fk_equipment_image` FOREIGN KEY (`image_id`) REFERENCES `image` (`id`)
 );
 
 -- -----------------------------------------------------
@@ -155,8 +168,10 @@ CREATE TABLE IF NOT EXISTS `food_group` (
                                             `id` INT NOT NULL AUTO_INCREMENT,
                                             `name` VARCHAR(100) NOT NULL,
                                             `description` VARCHAR(100) NULL,
+                                            `iamge_id` INT,
                                             PRIMARY KEY (`id`),
-                                            CONSTRAINT `food_group_uc_1` UNIQUE (`name` ASC)
+                                            CONSTRAINT `food_group_uc_1` UNIQUE (`name` ASC),
+                                            CONSTRAINT `fk_food_group_image` FOREIGN KEY (`image_id`) REFERENCES `image` (`id`)
 );
 
 
