@@ -32,6 +32,19 @@ CREATE TABLE IF NOT EXISTS `cook` (
                                       CONSTRAINT `fk_cook_grade` FOREIGN KEY (`grade_id`) REFERENCES `grade` (`id`)
 );
 
+-- -----------------------------------------------------
+-- Table user
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `user` (
+                                      `id` INT NOT NULL AUTO_INCREMENT,
+                                      `user_name` VARCHAR(100) NOT NULL,
+                                      `password` VARCHAR(100) NOT NULL,
+                                      `is_admin` BOOLEAN,
+                                      `cook_id` INT
+                                      PRIMARY KEY (`id`),
+                                      CONSTRAINT `user_name_uc` (`user_name` ASC),
+                                      CONSTRAINT `fk_cook_user` FOREIGN KEY (`cook_id`) REFERENCES `cook` (`id`)
+);
 
 -- -----------------------------------------------------
 -- Table `cuisine`
